@@ -11,3 +11,11 @@ pom.xml.asc
 /.prepl-port
 .hgignore
 .hg/
+
+# ¯\_(ツ)_/¯ - have no clue where these where come from
+/.clj-kondo
+/.lsp
+
+# Idea files
+/.idea
+/*.iml
