@@ -1,6 +1,4 @@
-(ns tutorial.tables.handlers
-  (:require
-   [compojure.core :refer [GET routes]]))
+(ns tutorial.tables.handlers)
 
 (defn handle-get-tables []
   {:status 200
@@ -11,10 +9,5 @@
   {:status 200
    :body {:id id
           :name "shomething else"}})
-
-(def table-routes
-  (routes
-   (GET "/" [] (handle-get-tables))
-   (GET "/:id" [id] (handle-get-table id))))
 
 
