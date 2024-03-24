@@ -7,6 +7,8 @@
             :url "https://opensource.org/license/mit"}
 
   :dependencies [[org.clojure/clojure "1.11.1"]
+                 [org.clojure/java.jdbc "0.7.12"]
+                 [org.postgresql/postgresql "42.7.3"]
                  [ring/ring-core "1.12.0"]
                  [ring/ring-jetty-adapter "1.12.0"]
                  [ring/ring-defaults "0.4.0"]
