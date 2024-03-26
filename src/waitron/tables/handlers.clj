@@ -1,4 +1,4 @@
-(ns tutorial.tables.handlers)
+(ns waitron.tables.handlers)
 
 (defn handle-get-tables [_]
   {:status 200

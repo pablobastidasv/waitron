@@ -1,6 +1,6 @@
-(ns tutorial.dishes.routes
+(ns waitron.dishes.routes
   (:require
-   [tutorial.dishes.handlers :refer [handle-get-dish handle-get-dishes]]))
+   [waitron.dishes.handlers :refer [handle-get-dish handle-get-dishes]]))
 
 (def dishes-routes
   [["" {:get handle-get-dishes}]

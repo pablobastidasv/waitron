@@ -1,10 +1,10 @@
-(ns tutorial.core
+(ns waitron.core
   (:require
    [reitit.ring :as ring]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.json :refer [wrap-json-response]]
-   [tutorial.middlewares :refer [ignore-trailing-slash]]
-   [tutorial.routes :refer [app-routes]])
+   [waitron.middlewares :refer [ignore-trailing-slash]]
+   [waitron.routes :refer [app-routes]])
   (:gen-class))
 
 (def app

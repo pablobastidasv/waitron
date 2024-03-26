@@ -1,4 +1,4 @@
-(ns tutorial.fundamentals
+(ns waitron.fundamentals
   (:require [clojure.string :as string]))
 
 (println "Hello"

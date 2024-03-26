@@ -1,7 +1,7 @@
-(ns tutorial.dishes.handlers
+(ns waitron.dishes.handlers
   (:require
-   [tutorial.database :as db]
-   [tutorial.dishes.db :refer [read-all-dishes]]))
+   [waitron.database :as db]
+   [waitron.dishes.db :refer [read-all-dishes]]))
 
 (defn handle-get-dishes [_]
   {:status 200

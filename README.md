@@ -31,7 +31,7 @@ lein ring server-headless
 ## Create the jar with
 lein uberjar
 ## Run it
-java -jar target/uberjar/tutorial-0.1.0-SNAPSHOT-standalone.jar
+java -jar target/uberjar/waitron-0.1.0-SNAPSHOT-standalone.jar
 ```
 
 ## License

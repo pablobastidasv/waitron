@@ -1,4 +1,4 @@
-(ns tutorial.dishes.db
+(ns waitron.dishes.db
   (:require [clojure.java.jdbc :as sql]))
 
 (defn read-all-dishes

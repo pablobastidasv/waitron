@@ -1,8 +1,8 @@
-(ns tutorial.routes
+(ns waitron.routes
   (:require
    [reitit.ring :as ring]
-   [tutorial.dishes.routes :refer [dishes-routes]]
-   [tutorial.tables.routes :refer [table-routes]]))
+   [waitron.dishes.routes :refer [dishes-routes]]
+   [waitron.tables.routes :refer [table-routes]]))
 
 (def app-routes
   (ring/router

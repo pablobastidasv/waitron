@@ -1,4 +1,4 @@
-(ns tutorial.middlewares)
+(ns waitron.middlewares)
 
 (defn ignore-trailing-slash
   "Modifies the request uri before calling the handler.

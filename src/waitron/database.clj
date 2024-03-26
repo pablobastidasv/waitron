@@ -1,4 +1,4 @@
-(ns tutorial.database)
+(ns waitron.database)
 
 (def connection {:dbtype "postgresql"
                  :port 5432

@@ -1,4 +1,4 @@
-(defproject tutorial "0.1.0-SNAPSHOT"
+(defproject waitron "0.1.0-SNAPSHOT"
   :description "A demo API to learn how to make one using clojure"
 
   :url "https://pablobastidasv.co"
@@ -14,14 +14,14 @@
                  [ring/ring-json "0.5.1"]
                  [metosin/reitit-ring "0.6.0"]]
 
-  :main ^:skip-aot tutorial.core
+  :main ^:skip-aot waitron.core
 
   :target-path "target/%s"
 
   :plugins [[lein2-eclipse "2.0.0"]
             [lein-ring "0.12.6"]]
 
-  :ring {:handler tutorial.core/app}
+  :ring {:handler waitron.core/app}
 
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
