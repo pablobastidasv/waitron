@@ -6,6 +6,7 @@
 
 (def app-routes
   (ring/router
-   [["/dishes" dishes-routes]
-    ["/tables" table-routes]]))
+   [["/api"
+     ["/dishes" dishes-routes]
+     ["/tables" table-routes]]]))
 
