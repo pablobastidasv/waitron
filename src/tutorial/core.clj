@@ -1,5 +1,6 @@
 (ns tutorial.core
   (:require
+   [reitit.ring :as ring]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.json :refer [wrap-json-response]]
    [tutorial.middlewares :refer [ignore-trailing-slash]]
@@ -7,7 +8,7 @@
   (:gen-class))
 
 (def app
-  (-> app-routes
+  (-> (ring/ring-handler app-routes (ring/create-default-handler))
       (ignore-trailing-slash)
       (wrap-json-response)))
 

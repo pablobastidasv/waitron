@@ -1,11 +1,11 @@
-(ns tutorial.routes 
+(ns tutorial.routes
   (:require
-   [compojure.core :refer [context defroutes]]
+   [reitit.ring :as ring]
    [tutorial.dishes.routes :refer [dishes-routes]]
    [tutorial.tables.routes :refer [table-routes]]))
 
-(defroutes app-routes
-  (context "/dishes" [] dishes-routes)
-  (context "/tables" [] table-routes))
-
+(def app-routes
+  (ring/router
+   [["/dishes" dishes-routes]
+    ["/tables" table-routes]]))
 
