@@ -4,9 +4,9 @@
    [waitron.dishes.routes :refer [dishes-routes]]
    [waitron.tables.routes :refer [table-routes]]))
 
-(def app-routes
+(defn app-routes []
   (ring/router
    [["/api"
-     ["/dishes" dishes-routes]
-     ["/tables" table-routes]]]))
+     ["/dishes" (dishes-routes)]
+     ["/tables" (table-routes)]]]))
 

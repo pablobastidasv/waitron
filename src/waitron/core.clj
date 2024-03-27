@@ -8,7 +8,7 @@
   (:gen-class))
 
 (def app
-  (-> (ring/ring-handler app-routes (ring/create-default-handler))
+  (-> (ring/ring-handler (app-routes) (ring/create-default-handler))
       (ignore-trailing-slash)
       (wrap-json-response)))
 
