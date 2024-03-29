@@ -1,13 +1,14 @@
 (ns waitron.tables.handlers)
 
-(defn handle-get-tables [_]
+(defn handle-get-tables [{{:strs [limit offset] 
+                           :or {limit 10, offset 0}} :query-params}]
   {:status 200
    :body {:tables [{:id "something"
-                    :name "shomething else"}]}})
+                    :name (str "limit: " limit ", offset: " offset)}]}})
 
-(defn handle-get-table [_]
+(defn handle-get-table [{{:keys [id]} :path-params}]
   {:status 200
-   :body {:id "ID"
+   :body {:id id
           :name "shomething else"}})
 
 
