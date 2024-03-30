@@ -7,5 +7,8 @@
 (defn pages-routes []
   [["/" welcome/home-page]
    ["/tables" tables/home-page]
-   ["/dishes" dishes/home-page]])
+   ["/dishes"
+    ["" dishes/home-page]
+    ["/list" dishes/dishes-list-fragment]
+    ]])
 

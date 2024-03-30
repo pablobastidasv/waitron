@@ -3,12 +3,12 @@
    [hiccup2.core :as h]))
 
 (defn render [content]
-  (-> (content)
+  (-> content
       (h/html)
       (str)))
 
 (defn respond-with [content]
   {:status 200
-   :body (render content)})
+   :body (render (content))})
 
 

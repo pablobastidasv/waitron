@@ -5,6 +5,9 @@
 (defn style [style]
   [:link {:rel "stylesheet" :href style}])
 
+(def scripts
+  [:script {:src "https://unpkg.com/htmx.org@1.9.11"}])
+
 (defn styles []
   (let [url (list "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
                   "/css/styles.css")]
@@ -14,7 +17,8 @@
   [:head
    [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
    [:title "Waitron Admin Console"]
-   (styles)])
+   (styles)
+   scripts])
 
 (defn body [& content]
   [:body (list content)])
@@ -33,7 +37,7 @@
   [:h1 "Waitron"])
 
 (defn footer []
-  [:h6 "2024 Pablo Bastidas. All rights reserved"])
+  [:h6 "2024 Pablo Bastidas."])
 
 (defn main-template [& content]
   [:html
