@@ -3,6 +3,7 @@
    [reitit.ring :as ring]
    [ring.adapter.jetty :as jetty]
    [ring.middleware.params :refer [wrap-params]]
+   [ring.middleware.resource :refer [wrap-resource]]
    [waitron.middlewares :refer [ignore-trailing-slash]]
    [waitron.routes :refer [app-routes]])
   (:gen-class))
@@ -12,6 +13,7 @@
        (app-routes)
        (ring/create-default-handler))
       (wrap-params)
+      (wrap-resource "public")
       (ignore-trailing-slash)))
 
 (defn -main
