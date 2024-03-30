@@ -9,6 +9,7 @@
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/java.jdbc "0.7.12"]
                  [org.postgresql/postgresql "42.7.3"]
+                 [org.slf4j/slf4j-simple "2.0.12"]
                  [hiccup "2.0.0-RC3"]
                  [ring/ring-core "1.12.0"]
                  [ring/ring-jetty-adapter "1.12.0"]
