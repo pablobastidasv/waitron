@@ -2,16 +2,23 @@
   (:require
    [reitit.ring :as ring]
    [ring.middleware.json :refer [wrap-json-response]]
-   [waitron.dishes.routes :refer [dishes-routes]]
-   [waitron.pages.routes :refer [pages-routes]]
-   [waitron.tables.routes :refer [table-routes]]))
+   [waitron.dishes.routes :as dishes-routes]
+   [waitron.tables.routes :as tables-routes]
+   [waitron.templates :refer [handle-home-page]]))
+
+(defn home-redirect [_]
+  {:status 301
+   :headers {"Location" "/admin"}})
 
 (defn app-routes []
   (ring/router
-   [["/api" {:middleware [wrap-json-response]}
-     ["/dishes" (dishes-routes)]
-     ["/tables" (table-routes)]]
-    ["" (pages-routes)]]))
-
-
+   [""
+    ["/" home-redirect]
+    ["/api" {:middleware [wrap-json-response]}
+     ["/dishes" (dishes-routes/apis)]
+     ["/tables" (tables-routes/apis)]]
+    ["/admin"
+     ["" handle-home-page]
+     ["/dishes" (dishes-routes/pages-and-fragments)]
+     ["/tables" (tables-routes/pages-and-fragments)]]]))
 

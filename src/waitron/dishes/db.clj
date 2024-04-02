@@ -5,5 +5,5 @@
   ([connection limit offset]
    (let [limit (read-string limit)
          offset (read-string offset)]
-     (into [] (sql/query connection ["select * from dishes limit ? offset ?" limit offset])))))
+     (into [] (sql/query connection ["select id, name from dishes limit ? offset ?" limit offset])))))
 

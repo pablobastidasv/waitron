@@ -1,6 +1,6 @@
-(ns waitron.pages.templates
+(ns waitron.templates
   (:require
-   [waitron.pages.utils :refer [respond-with]]))
+   [hiccup2.core :as h]))
 
 (defn style [style]
   [:link {:rel "stylesheet" :href style}])
@@ -29,8 +29,8 @@
 
 (defn menu []
   (let [options (list {:label "Home" :url "/"}
-                      {:label "Dishes" :url "/dishes"}
-                      {:label "Tables" :url "/tables"})]
+                      {:label "Dishes" :url "/admin/dishes"}
+                      {:label "Tables" :url "/admin/tables"})]
     [:nav [:ul (map menu-item options)]]))
 
 (defn header []
@@ -52,9 +52,14 @@
   (main-template
    [:h2 "Welcome!!!"]))
 
-(defn home-page
+(defn render [content]
+  (-> content
+      (h/html)
+      (str)))
+
+(defn handle-home-page
   "Renders the Welcome's Home page"
   [_] ;; Request
-  (respond-with home))
-
+  {:status 200
+   :body (render (home))})
 
