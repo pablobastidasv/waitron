@@ -6,7 +6,8 @@
   [:link {:rel "stylesheet" :href style}])
 
 (def scripts
-  [:script {:src "https://unpkg.com/htmx.org@1.9.11"}])
+  '([:script {:src "https://unpkg.com/htmx.org@1.9.11"}]
+   [:script {:src "https://unpkg.com/side-drawer/side-drawer.min.js" :type "module"}]))
 
 (defn styles []
   (let [url (list "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
@@ -36,6 +37,9 @@
 (defn header []
   [:h1 "Waitron"])
 
+(defn side-drawer []
+  [:side-drawer {:id "form-panel" :open true}])
+
 (defn footer []
   [:h6 "2024 Pablo Bastidas."])
 
@@ -46,6 +50,7 @@
     (header)
     (menu)
     content
+    (side-drawer)
     (footer))])
 
 (defn home []
