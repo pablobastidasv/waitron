@@ -24,3 +24,7 @@ nav {
         background-color: #111;
     }
 }
+
+#form-panel {
+    background-color: inherit;
+}

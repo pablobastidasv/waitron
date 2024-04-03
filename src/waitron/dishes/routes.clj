@@ -1,5 +1,6 @@
 (ns waitron.dishes.routes
   (:require
+   [ring.middleware.json :refer [wrap-json-body]]
    [waitron.dishes.handlers :as handlers]))
 
 (defn apis []
@@ -7,6 +8,9 @@
    ["/:id" {:get handlers/handle-get-dish}]])
 
 (defn pages-and-fragments []
-  [["" handlers/handle-get-index-page]
-   ["/list" handlers/handle-get-dishes-table]])
+  [["" {:get handlers/handle-get-index-page
+        :post handlers/handle-post-dishes :middleware [wrap-json-body]}]
+   ["/list" {:get handlers/handle-get-dishes-table}]
+   ["/new" {:get handlers/handle-get-new-dish}]
+   ])
 

@@ -19,7 +19,18 @@
 (defn home []
   (main-template
    [:h2 "Dishes manager"]
-   [:button "Create"]
+   [:button {:hx-get "/admin/dishes/new" :hx-target "#form-panel"} "Create"]
    [:div {:hx-get "/admin/dishes/list" :hx-trigger "load"}]))
 
-
+(defn create-dish-form []
+  [:form {:hx-post "/admin/dishes"}
+   [:h3 "Create Dish"]
+   [:input {:type "hidden" :value (random-uuid) :name "id"}]
+   [:div
+    [:label "Name" :for "name"]
+    [:input {:autofocus true :name "name"}]]
+   [:div
+    [:label "Description" :for "description"]
+    [:textarea {:name "description"}]]
+   [:div
+    [:button {:type "submit"} "Save"]]])
