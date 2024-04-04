@@ -9,5 +9,6 @@
 
 (defn insert-a-new-dish
   [connection {:keys [id name description]}]
-  (println connection " " id "-" name "-" description))
+  (println connection " " id "-" name "-" description)
+  (sql/insert! connection :dishes [:id :name :description] [(parse-uuid id) name description]))
 

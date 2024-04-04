@@ -4,3 +4,4 @@ function toggleFormPanel() {
 }
 
 document.addEventListener("toggleFormPanel", toggleFormPanel);
+document.addEventListener("dishCreated", toggleFormPanel);

@@ -32,4 +32,5 @@
 
 (defn handle-post-dishes [{{:strs [id name description]} :form-params}]
   (data/insert-a-new-dish connection {:id id :name name :description description})
-  {:status 200})
+  {:status 200
+   :headers {"Hx-Trigger" "dishCreated"  "HX-Redirect" "/admin/dishes/id"}})
