@@ -7,13 +7,13 @@
 
 (def scripts
   '([:script {:src "https://unpkg.com/htmx.org@1.9.11"}]
-   [:script {:src "https://unpkg.com/side-drawer/side-drawer.min.js" :type "module"}]
-   [:script {:src "/js/scripts.js"}]
-   ))
+    [:script {:src "https://unpkg.com/side-drawer/side-drawer.min.js" :type "module"}]
+    [:script {:src "/js/scripts.js"}]))
 
 (defn styles []
-  (let [url (list "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
-                  "/css/styles.css")]
+  (let [url (list
+             "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+             "/css/styles.css")]
     (map style url)))
 
 (defn head []
@@ -24,7 +24,7 @@
    scripts])
 
 (defn body [& content]
-  [:body (list content)])
+  [:body {:class "container"} (list content)])
 
 (defn menu-item [{:keys [label url]}]
   [:li
@@ -40,10 +40,13 @@
   [:h1 "Waitron"])
 
 (defn side-drawer []
-  [:side-drawer {:id "form-panel"}])
+  [:side-drawer {:id "form-panel" :right "true"}])
 
 (defn footer []
   [:h6 "2024 Pablo Bastidas."])
+
+(defn messages-container []
+  [:div#messages-container])
 
 (defn main-template [& content]
   [:html
@@ -51,6 +54,7 @@
    (body
     (header)
     (menu)
+    (messages-container)
     content
     (side-drawer)
     (footer))])

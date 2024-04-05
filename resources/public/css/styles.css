@@ -25,6 +25,7 @@ nav {
     }
 }
 
-#form-panel {
-    background-color: inherit;
+side-drawer {
+  width: 500px;
+  max-width: 75vw;
 }
