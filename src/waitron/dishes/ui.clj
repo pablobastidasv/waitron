@@ -20,7 +20,7 @@
   (main-template
    [:h2 "Dishes manager"]
    [:button {:hx-get "/admin/dishes/new" :hx-target "#form-panel" :class "btn btn-primary"} "Create"]
-   [:div {:hx-get "/admin/dishes/list" :hx-trigger "load dishesCreated"}]))
+   [:div {:hx-get "/admin/dishes/list" :hx-trigger "load, dishCreated from:body"}]))
 
 (defn create-dish-form []
   [:form {:hx-post "/admin/dishes" :autocomplete "off"}
