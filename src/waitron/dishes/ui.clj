@@ -1,6 +1,6 @@
 (ns waitron.dishes.ui
   (:require
-   [waitron.templates :refer [main-template]]))
+   [waitron.templates :refer [info-alert main-template]]))
 
 (defn- dish-list-item [{:keys [id name]}]
   [:tr
@@ -11,9 +11,9 @@
   [:table {:class "table table-hover"}
    [:thead
     [:tr
-     [:td "Id"]
-     [:td "Name"]]]
-   [:tbody
+     [:th "Id"]
+     [:th "Name"]]]
+   [:tbody {:class "table-group-divider"}
     (map dish-list-item dishes)]])
 
 (defn home []
@@ -36,8 +36,5 @@
     [:button {:type "submit" :class "btn btn-primary"} "Save"]]])
 
 (defn  dish-created-correctly-alert [id]
-  [:div {:class "alert alert-primary d-flex align-items-center" :role "alert"} 
-   [:svg {:class "bi flex-shrink-0 me-2" :width "24" :height "24" :role "img" :aria-label "Info:"}
-    [:use {:xlink:href "#info-fill"}]]
-   [:div "Dish created correctly. See details "
-   [:a {:href (str "/admin/dishes/" id)} "here."]]])
+  (info-alert [:span "Dish created correctly. See details "
+               [:a {:href (str "/admin/dishes/" id)} "here."]]))
