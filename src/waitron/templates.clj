@@ -71,9 +71,6 @@
     [:use {:xlink:href "#check-circle-fill"}]]
    message
    [:button {:type "button", :class "btn-close", :data-bs-dismiss "alert", :aria-label "Close"}]])
-  ; [:div {:class "alert alert-success d-flex align-items-center", :role "alert"}
-  ;  [:div message]
-  ;  [:button {:type "button", :class "btn-close", :data-bs-dismiss "alert", :aria-label "Close"}]])
 
 (defn main-template [& content]
   [:html
