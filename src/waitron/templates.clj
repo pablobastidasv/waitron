@@ -28,7 +28,7 @@
    head-scripts])
 
 (defn body [& content]
-  [:body {:class "container"}
+  [:body {:class "container" :data-bs-theme "dark"}
    content])
 
 (defn menu-item [{:keys [label url]}]

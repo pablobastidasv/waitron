@@ -26,6 +26,7 @@ nav {
 }
 
 side-drawer {
-  width: 500px;
-  max-width: 75vw;
+    background-color: inherit;
+    width: 500px;
+    max-width: 75vw;
 }
