@@ -3,6 +3,7 @@
    [waitron.database :refer [connection]]
    [waitron.dishes.db :as data]
    [waitron.dishes.ui :as ui]
+   [waitron.dishes.validations :refer [validate-dish]]
    [waitron.templates :refer [render]]))
 
 (defn handle-get-dishes [{{:strs [limit offset]
@@ -30,8 +31,22 @@
    :headers {"Hx-Trigger" "toggleFormPanel"}
    :body (render (ui/create-dish-form))})
 
-(defn handle-post-dishes [{{:strs [id name description]} :form-params}]
-  (data/insert-a-new-dish connection {:id id :name name :description description})
-  {:status 200
-   :headers {"Hx-Trigger" "dishCreated" "HX-Retarget" "#messages-container"}
-   :body (render (ui/dish-created-correctly-alert id))})
+(defn handle-post-dishes [{:keys [form-params]}]
+  (let [result (validate-dish form-params)]
+    (if (get result :errors)
+        {:status 200
+         :body (render (ui/create-dish-form result))}
+      (do
+        ; (data/insert-a-new-dish connection (get result :data))
+        {:status 200
+         :headers {"Hx-Trigger" "dishCreated" "HX-Retarget" "#messages-container"}
+         :body (render (ui/dish-created-correctly-alert (get result :id)))}))))
+
+; (data/insert-a-new-dish connection {:id id :name name :description description})
+  ; {:status 200
+  ;  :headers {"Hx-Trigger" "dishCreated" "HX-Retarget" "#messages-container"}
+  ;  :body (render (ui/dish-created-correctly-alert id))})
+
+(handle-post-dishes {:form-params {:id "a7bc38bf-ed04-4cf5-a66b-366157586301"
+                                   :name "hola"
+                                   :description "ok"}})

@@ -11,6 +11,7 @@
                  [org.postgresql/postgresql "42.7.3"]
                  [org.slf4j/slf4j-simple "2.0.12"]
                  [hiccup "2.0.0-RC3"]
+                 [funcool/struct "1.3.0"] ;; validation library https://funcool.github.io/struct/latest/
                  [ring/ring-core "1.12.0"]
                  [ring/ring-jetty-adapter "1.12.0"]
                  [ring/ring-json "0.5.1"]
