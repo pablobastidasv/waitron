@@ -39,14 +39,6 @@
       (do
         (data/insert-a-new-dish connection (:data result))
         {:status 200
-         :headers {"Hx-Trigger" "dishCreated" "HX-Retarget" "#messages-container"}
+         :headers {"Hx-Trigger" "dishCreated" "HX-Retarget" "#messages-container" "HX-Reswap" "innerHTML"}
          :body (render (ui/dish-created-correctly-alert (get result :id)))}))))
 
-; (data/insert-a-new-dish connection {:id id :name name :description description})
-  ; {:status 200
-  ;  :headers {"Hx-Trigger" "dishCreated" "HX-Retarget" "#messages-container"}
-  ;  :body (render (ui/dish-created-correctly-alert id))})
-
-(handle-post-dishes {:form-params {:id "a7bc38bf-ed04-4cf5-a66b-366157586301"
-                                   :name "hola"
-                                   :description "ok"}})
