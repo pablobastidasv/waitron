@@ -23,26 +23,34 @@
    [:div {:hx-get "/admin/dishes/list" :hx-trigger "load, dishCreated from:body"}]))
 
 (defn input [data error]
-  (println "input data " data " - " error)
   [:div {:class "mb-3"}
    [:label {:for "name" :class "form-label"}  "Name"]
-   [:input {:autofocus true :name "name" :class "form-control" :value data}]
+   [:input {:autofocus true :name "name" :value data
+            :class (str "form-control" " " (cond error "is-invalid"))}]
+   (cond error
+         [:div {:class "invalid-feedback"} error])])
+
+(defn textarea [data error]
+  [:div
+   [:label {:for "description" :class "form-label"} "Description"]
+   (let [class (str "form-control" " " (cond error "is-invalid"))]
+     [:textarea {:name "description" :class class} data])
    (cond error
          [:div {:class "invalid-feedback"} error])])
 
 (defn create-dish-form
   ([] (create-dish-form nil))
   ([{:keys [data errors]}]
-   [:form {:hx-post "/admin/dishes" :hx-swap "outerHTML" :autocomplete "off"
-           :class (cond errors "was-validated")}
+   (println data "-" errors)
+   [:form {:hx-post "/admin/dishes" :hx-swap "outerHTML" :autocomplete "off"}
     [:h3 "Create Dish"]
     [:input {:type "hidden" :value (random-uuid) :name "id"}]
-    (let [name (get data "name")
-          error (get errors :name)]
+    (let [name (:name data)
+          error (:name errors)]
       (input name error))
-    [:div
-     [:label {:for "description" :class "form-label"} "Description"]
-     [:textarea {:name "description" :class "form-control"}]]
+    (let [description (:description data)
+          error (:description errors)]
+      (textarea description error))
     [:div {:class "d-grid gap-2 col-6 mx-auto"}
      [:button {:type "submit" :class "btn btn-primary"} "Save"]]]))
 

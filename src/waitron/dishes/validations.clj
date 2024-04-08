@@ -1,5 +1,6 @@
 (ns waitron.dishes.validations
   (:require
+   [clojure.walk :refer [keywordize-keys]]
    [struct.core :as st]))
 
 (defn- to-monad [pair]
@@ -16,5 +17,6 @@
    :description [st/required st/string]})
 
 (defn validate-dish [dish]
-  (validate dish dish-schema))
+  (let [dish (keywordize-keys dish)]
+    (validate dish dish-schema)))
 

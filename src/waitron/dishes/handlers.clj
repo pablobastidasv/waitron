@@ -33,11 +33,11 @@
 
 (defn handle-post-dishes [{:keys [form-params]}]
   (let [result (validate-dish form-params)]
-    (if (get result :errors)
-        {:status 200
-         :body (render (ui/create-dish-form result))}
+    (if  (get result :errors)
+      {:status 200
+       :body (render (ui/create-dish-form result))}
       (do
-        ; (data/insert-a-new-dish connection (get result :data))
+        (data/insert-a-new-dish connection (:data result))
         {:status 200
          :headers {"Hx-Trigger" "dishCreated" "HX-Retarget" "#messages-container"}
          :body (render (ui/dish-created-correctly-alert (get result :id)))}))))
