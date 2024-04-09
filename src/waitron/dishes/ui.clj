@@ -1,6 +1,6 @@
 (ns waitron.dishes.ui
   (:require
-   [waitron.templates :refer [info-alert main-template]]))
+   [waitron.uikit :refer [info-alert main-template input textarea]]))
 
 (defn- dish-list-item [{:keys [id name]}]
   [:tr
@@ -21,22 +21,6 @@
    [:h2 "Dishes manager"]
    [:button {:hx-get "/admin/dishes/new" :hx-target "#form-panel" :class "btn btn-primary"} "Create"]
    [:div {:hx-get "/admin/dishes/list" :hx-trigger "load, dishCreated from:body"}]))
-
-(defn input [data error]
-  [:div {:class "mb-3"}
-   [:label {:for "name" :class "form-label"}  "Name"]
-   [:input {:autofocus true :name "name" :value data
-            :class (str "form-control" " " (cond error "is-invalid"))}]
-   (cond error
-         [:div {:class "invalid-feedback"} error])])
-
-(defn textarea [data error]
-  [:div
-   [:label {:for "description" :class "form-label"} "Description"]
-   (let [class (str "form-control" " " (cond error "is-invalid"))]
-     [:textarea {:name "description" :class class} data])
-   (cond error
-         [:div {:class "invalid-feedback"} error])])
 
 (defn create-dish-form
   ([] (create-dish-form nil))

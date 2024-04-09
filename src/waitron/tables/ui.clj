@@ -1,6 +1,6 @@
 (ns waitron.tables.ui
   (:require
-   [waitron.templates :refer [main-template]]))
+   [waitron.uikit :refer [main-template]]))
 
 (defn home []
   (main-template

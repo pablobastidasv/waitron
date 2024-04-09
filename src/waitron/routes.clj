@@ -4,7 +4,7 @@
    [ring.middleware.json :refer [wrap-json-response]]
    [waitron.dishes.routes :as dishes-routes]
    [waitron.tables.routes :as tables-routes]
-   [waitron.templates :refer [handle-home-page]]))
+   [waitron.uikit :refer [handle-home-page]]))
 
 (defn home-redirect [_]
   {:status 301

@@ -4,7 +4,7 @@
    [waitron.dishes.db :as data]
    [waitron.dishes.ui :as ui]
    [waitron.dishes.validations :refer [validate-dish]]
-   [waitron.templates :refer [render]]))
+   [waitron.uikit :refer [render]]))
 
 (defn handle-get-dishes [{{:strs [limit offset]
                            :or {limit "10", offset "0"}} :query-params}]
