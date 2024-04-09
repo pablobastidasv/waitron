@@ -25,7 +25,6 @@
 (defn create-dish-form
   ([] (create-dish-form nil))
   ([{:keys [data errors]}]
-   (println data "-" errors)
    [:form {:hx-post "/admin/dishes" :hx-swap "outerHTML" :autocomplete "off"}
     [:h3 "Create Dish"]
     [:input {:type "hidden" :value (random-uuid) :name "id"}]
