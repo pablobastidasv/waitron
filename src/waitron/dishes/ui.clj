@@ -1,9 +1,10 @@
 (ns waitron.dishes.ui
   (:require
-   [waitron.uikit :refer [info-alert main-template input textarea]]))
+   [clojure.string :as string]
+   [waitron.uikit :refer [info-alert input main-template textarea]]))
 
 (defn- dish-list-item [{:keys [id name]}]
-  [:tr
+  [:tr {:hx-on:click  (str "window.location.href = '/admin/dishes/" id "';") :style "cursor: pointer"}
    [:td (take-last 8 (str id))]
    [:td name]])
 
@@ -40,5 +41,42 @@
 (defn  dish-created-correctly-alert [id]
   (info-alert [:span "Dish created correctly. See details "
                [:a {:href (str "/admin/dishes/" id)} "here."]]))
+
+(defn- random-name []
+  (apply str (repeatedly 10 #(rand-nth "abcdefghijklmnopqrstuvwxyz0123456789"))))
+
+(defn- input-classes
+  "Define the classes to apply to the input element based on the given data"
+  [{:keys [readonly error]}]
+  (string/join " " ["form-control" (cond error "is-invalid") (cond readonly "form-control-plaintext")]))
+
+(defn another-input [{:keys [error data label readonly autofocus]}]
+  (let [name (random-name)
+        classes (input-classes {:error error :readonly readonly})]
+    [:div  {:class "mb-3 row"}
+     [:label {:for name :class "col-sm-2 col-form-label"}  label]
+     [:div {:class "col-sm-10"}
+      [:input {:autofocus (boolean autofocus) :name name :value data  :readonly (boolean readonly) :class classes}]
+      (cond error
+            [:div {:class "invalid-feedback"} error])]]))
+
+(defn another-textarea [{:keys [error data label readonly autofocus]}]
+  (let [name (random-name)
+        classes (input-classes {:error error :readonly readonly})]
+    [:div  {:class "mb-3 row"}
+     [:label {:for name :class "col-sm-2 col-form-label"}  label]
+     [:div {:class "col-sm-10"}
+      [:textarea {:autofocus (boolean autofocus) :name name  :readonly (boolean readonly) :class classes} data]
+      (cond error
+            [:div {:class "invalid-feedback"} error])]]))
+
+(defn dish-detail-page [{:keys [id name description]}]
+  (main-template
+   [:h2 (str "Dish details")]
+   (another-input {:readonly true :data id :label "Id"})
+   (another-input {:readonly true :data name :label "Name"})
+   (another-textarea {:readonly true :data description :label "Description"})))
+
+
 
 

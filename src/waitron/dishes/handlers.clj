@@ -32,13 +32,19 @@
    :body (render (ui/create-dish-form))})
 
 (defn handle-post-dishes [{:keys [form-params]}]
-  (let [result (validate-dish form-params)]
-    (if  (get result :errors)
+  (let [result (validate-dish form-params)
+        errors (:errors result)
+        dish (:data result)]
+    (if errors
       {:status 200
        :body (render (ui/create-dish-form result))}
       (do
-        (data/insert-a-new-dish connection (:data result))
+        (data/insert-a-new-dish connection dish)
         {:status 200
          :headers {"Hx-Trigger" "dishCreated" "HX-Retarget" "#messages-container" "HX-Reswap" "innerHTML"}
-         :body (render (ui/dish-created-correctly-alert (get result :id)))}))))
+         :body (render (ui/dish-created-correctly-alert (:id dish)))}))))
 
+(defn handle-get-dish-by-id-page [{{:keys [id]} :path-params}]
+  (let [dish (data/read-dish-by-id connection id)]
+    {:status 200
+     :body (render (ui/dish-detail-page dish))}))

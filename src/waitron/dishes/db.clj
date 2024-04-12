@@ -10,3 +10,7 @@
 (defn insert-a-new-dish [connection {:keys [id name description]}]
   (sql/insert! connection :dishes [:id :name :description] [id name description]))
 
+(defn read-dish-by-id
+  [connection id]
+  (first (sql/query connection ["select id, name, description from dishes where id = ?" (parse-uuid id)])))
+

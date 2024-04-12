@@ -1,5 +1,6 @@
 (ns waitron.routes
   (:require
+   [reitit.exception :as exception]
    [reitit.ring :as ring]
    [ring.middleware.json :refer [wrap-json-response]]
    [waitron.dishes.routes :as dishes-routes]
@@ -9,6 +10,9 @@
 (defn home-redirect [_]
   {:status 301
    :headers {"Location" "/admin"}})
+
+(defn- print-conflicts [conflicts]
+  (println (exception/format-exception :path-conflicts nil conflicts)))
 
 (defn app-routes []
   (ring/router
@@ -20,5 +24,7 @@
     ["/admin"
      ["" handle-home-page]
      ["/dishes" (dishes-routes/pages-and-fragments)]
-     ["/tables" (tables-routes/pages-and-fragments)]]]))
+     ["/tables" (tables-routes/pages-and-fragments)]]]
+   {:conflicts print-conflicts}))
+
 
