@@ -72,11 +72,14 @@
 
 (defn dish-detail-page [{:keys [id name description]}]
   (main-template
-   [:h2 (str "Dish details")]
-   (another-input {:readonly true :data id :label "Id"})
-   (another-input {:readonly true :data name :label "Name"})
-   (another-textarea {:readonly true :data description :label "Description"})))
+   [:h2 "Dish details"]
+   [another-input {:readonly true :data id :label "Id"}]
+   [another-input {:readonly true :data name :label "Name"}]
+   [another-textarea {:readonly true :data description :label "Description"}]
+   [:div
+    [:a {:class "btn btn-primary" :href (str "/admin/dishes/" id "/edit")} "Edit"]
+    [:a {:class "btn btn-danger"} "Delete"]]))
 
-
-
-
+(defn edit-dish-page []
+  (main-template
+   [:h2 "Editing dish"]))

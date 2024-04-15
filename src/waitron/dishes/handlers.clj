@@ -48,3 +48,7 @@
   (let [dish (data/read-dish-by-id connection id)]
     {:status 200
      :body (render (ui/dish-detail-page dish))}))
+
+(defn handle-get-edit-dish-page [_]
+  {:status 200
+   :body (render (ui/edit-dish-page))})
